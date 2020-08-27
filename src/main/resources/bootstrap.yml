@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: config-server
+
+
+server:
+  port: 8888
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*' 
+---
+spring:
+  cloud:
+    refresh:
+      enabled: true
+---
+spring:
+  cloud:
+    config:
+      server:
+         git:
+           uri: file://F:/git/config-repo #https://TanviTechnology@bitbucket.org/TanviTechnology/config-repo.git #ssh://git@onestash.tanvi.com:7999/tanvi/config-repo.git
+           username: venkatrami.ambati@gmail.com
+           password: shiny11*2
+         bootstrap: true
+        #force-pull: true
+          #basedir: /apps/opt/tanvi/tmp/config-repo-cache
+#spring.cloud.config.server.git.uri=${HOME}/Desktop/config
+---
+spring:
+  profiles: prod
+  cloud:
+    config:
+      #label: master
+      server:
+        git:
+          uri: ssh://git@onestash.tanvi.com:7999/tanvi/config-repo.git
+          force-pull: true
+          basedir: /apps/opt/tanvi/tmp/config-repo-cache  
