@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: config-server
+  profiles:    active: native
+    include: native
+
+management:  endpoints:    web:      exposure:        include: '*'
+---
+spring:  servlet:    multipart:      max-file-size: 10000MB      max-request-size: 10000MB
+
+server:  port: 8002
+  
